@@ -1,3 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
@@ -37,12 +46,15 @@ data:
        listen       80;
        server_name  localhost;
        #return 301 https://dou.ua/;
+
        #charset koi8-r;
        #access_log  /var/log/nginx/log/host.access.log  main;
+
        location / {
            root   /usr/share/nginx/html;
            index  index.html index.htm;
        }
+
        error_page   500 502 503 504  /50x.html;
        location = /50x.html {
            root   /usr/share/nginx/html;
